@@ -138,6 +138,81 @@ public final class Constants {
         }
     }
 
+    public final static class JoystickConstants{
+        public final static int DRIVER_USB = 0;
+        public final static int OPERATOR_USB = 1;
+        public final static int TEST_USB = 2;
+        
+        public final static int LEFT_Y_AXIS = 1;
+        public final static int LEFT_X_AXIS = 0;
+        public final static int RIGHT_X_AXIS = 4;
+    
+    
+        public final static int GREEN_BUTTON = 1;
+        public final static int RED_BUTTON = 2;
+        public final static int YELLOW_BUTTON = 4;
+        public final static int BLUE_BUTTON = 3;
+    
+        public final static int LEFT_TRIGGER = 2;
+        public final static int RIGHT_TRIGGER = 3;
+        public final static int LEFT_BUMPER = 5;
+        public final static int RIGHT_BUMPER = 6;
+    
+        public final static int BACK_BUTTON = 7;
+        public final static int START_BUTTON = 8;
+    
+        public final static int POV_UP = 0;
+        public final static int POV_RIGHT = 90;
+        public final static int POV_DOWN = 180;
+        public final static int POV_LEFT = 270;
+    }
+
+    public final static class IntakeConstants{
+        public final static int INTAKE_MOTOR = 16;
+      }
+
+    public final static class ElevatorConstants{
+        public final static int ELEVATOR_MOTOR = 5;
+        public static final int LIMIT_SWITCH = 9;
+        public static final double MAX_HEIGHT = -87000;// -86000;//-95000;//-95000;//-98000;//-101000; //-182000 (old)
+        public static final double STATION_HEIGHT = -101000;
+        public static final double MID_HEIGHT = -54000;//-53000;//-57000;//-60000;//-63000; //-135972 (old)
+        public static final double BOTTOM = -7000;
+      }
+
+    public final static class ArmConstants {
+        public final static int ARM_MOTOR = 10; 
+        public final static int LIMIT_SWITCH = 8;
+        public final static double MAX_EXTENSION = 28918;
+        public final static double TOP_EXTENSION = 20781;
+        public final static double GROUND_EXTENSION = 10300;
+        public final static String Joe = "Joe mother";
+        public final static double ARM_TOLERANCE = 500;
+      }
+    public final static class WristConstants{
+        public final static int WRIST_MOTOR = 6;
+        public final static double WRIST_HOME = 5000;
+        public final static double CONE_SETPOINT = 24000;
+        public final static double GROUND_INTAKE_CONE = 40000;
+        public final static double GROUND_INTAKE_CUBE = 47000; 
+        public final static double LAUNCH_CUBE = 5000;
+
+      }
+    
+    public final static class LEDConstants {
+        public final static int LED_FRONT = 0;
+        public final static int LED_BACK = 1;
+    
+        public final static double STROBE_GOLD = -0.07;
+        public final static double STROBE_BLUE = -0.09;
+        public final static double FIRE_MED =  -0.59;
+        public final static double SOLID_GREEN = 0.75;// lighter green is .71
+        public final static double CONFETTI = -0.87;
+        public final static double SOLID_VIOLET = 0.91;
+        public final static double SOLID_WHITE = 0.93;
+    
+      }   
+
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
