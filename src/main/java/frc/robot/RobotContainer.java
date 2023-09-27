@@ -141,6 +141,8 @@ public class RobotContainer {
     public void configureAutos() {
         autoChooser.setDefaultOption("Do Nothing", new InstantCommand());
         autoChooser.addOption("Test", new FirstAuto(swerve));
+        autoChooser.addOption("Move Forward", new AutoSwerveMoveCommand(swerve, 82.0, 0.00001));
+        autoChooser.addOption("Deliver Cone and Move", new DeliverConeAndMoveCommand(swerve, elevator, arm, wrist, intake));
         SmartDashboard.putData(autoChooser);
 
     }
@@ -152,6 +154,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new exampleAuto(swerve);
+        return autoChooser.getSelected();
     }
 }

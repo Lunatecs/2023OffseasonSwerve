@@ -81,6 +81,11 @@ public class SwerveModule {
         return Rotation2d.fromDegrees(angleEncoder.getAbsolutePosition());
     }
 
+    //Temporary Solution to getting Drive Encoder, TODO: Figure out a better solution
+    public double getDriveEncoder() {
+        return mDriveMotor.getSelectedSensorPosition();
+    }
+
     public void resetToAbsolute(){
         double absolutePosition = Conversions.degreesToFalcon(getCanCoder().getDegrees() - angleOffset.getDegrees(), chosenModule.angleGearRatio);
         mAngleMotor.setSelectedSensorPosition(absolutePosition);

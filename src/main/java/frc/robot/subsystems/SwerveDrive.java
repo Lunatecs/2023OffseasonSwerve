@@ -63,7 +63,7 @@ public class SwerveDrive extends SubsystemBase {
                 translation.getX(), 
                 translation.getY(), 
                 rotation))
-                                );
+            );
         SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
 
         for(SwerveModule mod : mSwerveMods){
@@ -122,6 +122,15 @@ public class SwerveDrive extends SubsystemBase {
 
     public void zeroGyro(){
         gyro.setYaw(0);
+    }
+
+    public double getFLDriveEncoder() {
+        return mSwerveMods[0].getDriveEncoder();
+    }
+
+
+    public void setYaw(double doob) {
+        gyro.setYaw(doob);
     }
 
     public Rotation2d getYaw() {

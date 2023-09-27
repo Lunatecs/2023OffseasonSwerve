@@ -17,9 +17,10 @@ public class FirstAuto extends SequentialCommandGroup {
   /** Creates a new FirstAuto. */
   public FirstAuto(SwerveDrive swerve) {
     final AutoFromPathPlanner test = new AutoFromPathPlanner(swerve, "Test", 1, 1, false, true, true);
+    swerve.setYaw(180.0);
     addCommands(
       new InstantCommand(() -> swerve.resetModulesToAbsolute()),
-      new InstantCommand(() -> SmartDashboard.putNumber("Test", 1)),
+      new InstantCommand(() -> SmartDashboard.putNumber("Test", 2.5)),
       new InstantCommand(() -> swerve.resetOdometryForState(test.getInitialState())),
       test);
   }
