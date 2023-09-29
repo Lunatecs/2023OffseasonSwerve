@@ -17,8 +17,10 @@ public class TeleopSwerve extends CommandBase {
     private DoubleSupplier strafeSup;
     private DoubleSupplier rotationSup;
     private BooleanSupplier robotCentricSup;
+    private BooleanSupplier slowMode;
+    private final double slowSpeed = 0.3;
 
-    public TeleopSwerve(SwerveDrive s_Swerve, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup) {
+    public TeleopSwerve(SwerveDrive s_Swerve, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup, BooleanSupplier slowMode) {
         this.s_Swerve = s_Swerve;
         addRequirements(s_Swerve);
 
@@ -30,6 +32,14 @@ public class TeleopSwerve extends CommandBase {
 
     @Override
     public void execute() {
+        double speedMult;
+
+        if (slowMode.getAsBoolean()) {
+            speedMult = slowSpeed * Constants.Swerve.maxSpeed;
+        } else {
+            speedMult = Constants.Swerve.maxSpeed;
+        }
+
         /* Get Values, Deadband*/
         double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), Constants.stickDeadband);
         double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), Constants.stickDeadband);
@@ -37,7 +47,7 @@ public class TeleopSwerve extends CommandBase {
 
         /* Drive */
         s_Swerve.drive(
-            new Translation2d(translationVal, strafeVal).times(Constants.Swerve.maxSpeed), 
+            new Translation2d(translationVal, strafeVal).times(speedMult), 
             rotationVal * Constants.Swerve.maxAngularVelocity, 
             !robotCentricSup.getAsBoolean(), 
             true

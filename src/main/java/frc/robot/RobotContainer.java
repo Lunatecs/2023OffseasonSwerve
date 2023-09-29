@@ -58,7 +58,8 @@ public class RobotContainer {
                 () -> -driverJoystick.getRawAxis(translationAxis), 
                 () -> -driverJoystick.getRawAxis(strafeAxis), 
                 () -> -driverJoystick.getRawAxis(rotationAxis), 
-                () -> false
+                () -> false,
+                () -> driverJoystick.getRawButton(JoystickConstants.LEFT_BUMPER) // slowMode
             )
         );
         
