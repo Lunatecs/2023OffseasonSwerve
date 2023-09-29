@@ -38,7 +38,7 @@ public class AutoSwerveMoveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double error = drive.getFLDriveEncoder();
+    double error = Math.abs(drive.getFLDriveEncoder());
     drive.drive(
       new Translation2d(drivePID.calculate(error), 0).times(Constants.Swerve.maxSpeed),
       0, 
@@ -47,6 +47,7 @@ public class AutoSwerveMoveCommand extends CommandBase {
     );
     SmartDashboard.putNumber("Auto Error", drivePID.getPositionError());
     SmartDashboard.putNumber("Auto encoder value", error);
+    SmartDashboard.putNumber("SetPoint", drivePID.getSetpoint());
 
   }
 
