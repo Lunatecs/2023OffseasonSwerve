@@ -30,12 +30,11 @@ public class AutoBalanceCommand extends PIDCommand {
 
           SmartDashboard.putNumber("Auto output", output);
           if(Math.abs(output)>0.325) {
-            output = Math.signum(output) * 0.4;
+              output = Math.signum(output) * 0.4;
+          }
+          swerve.drive(new Translation2d(output, 0), 0, true, false);
         }
-        
-        swerve.drive(new Translation2d(-output, 0), 0, true, false);
-
-      });
+      );
     addRequirements(swerve);
     this.getController().setTolerance(1);
     this.swerve = swerve;
@@ -60,5 +59,6 @@ public class AutoBalanceCommand extends PIDCommand {
   public void end(boolean interrupted) {
     super.end(interrupted);
     swerve.stop();
+    System.out.println("AutoBalance END");
   }
 }

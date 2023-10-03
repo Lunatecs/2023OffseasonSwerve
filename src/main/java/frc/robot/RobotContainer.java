@@ -46,6 +46,7 @@ public class RobotContainer {
     private final WristSubsystem wrist = new WristSubsystem();
     private final ArmSubsystem arm = new ArmSubsystem();
     private final LEDSubsystem led = LEDSubsystem.getInstance();
+    private final LimeLightSubsystem limelight = new LimeLightSubsystem();
 
     private SetPointSupplier elevatorSetpoint = new SetPointSupplier();
     boolean isCone = false;
@@ -58,7 +59,7 @@ public class RobotContainer {
                 () -> -driverJoystick.getRawAxis(translationAxis), 
                 () -> -driverJoystick.getRawAxis(strafeAxis), 
                 () -> -driverJoystick.getRawAxis(rotationAxis), 
-                () -> false,
+                () -> true,
                 () -> driverJoystick.getRawButton(JoystickConstants.LEFT_BUMPER) // slowMode
             )
         );
@@ -144,6 +145,9 @@ public class RobotContainer {
         autoChooser.addOption("Test", new FirstAuto(swerve));
         autoChooser.addOption("Move Forward", new AutoSwerveMoveCommand(swerve, 82.0, 0.00001));
         autoChooser.addOption("Deliver Cone and Move", new DeliverConeAndMoveCommand(swerve, elevator, arm, wrist, intake));
+        autoChooser.addOption("Deliver Cone and Move Bump Side", new DeliverConeAndMoveBumpSideCommand(swerve, elevator, arm, wrist, intake));
+        autoChooser.addOption("Test AutoBalance", new AutoDeliverConeandBalance(swerve, elevator, arm, wrist, intake));
+        
         SmartDashboard.putData(autoChooser);
 
     }

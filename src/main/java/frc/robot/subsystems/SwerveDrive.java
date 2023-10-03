@@ -30,10 +30,14 @@ public class SwerveDrive extends SubsystemBase {
     public SwerveModule[] mSwerveMods;
     public Pigeon2 gyro;
 
+    private double zeroAngle;
+
     public SwerveDrive() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID);
         gyro.configFactoryDefault();
         zeroGyro();
+
+        zeroAngle = gyro.getPitch();
 
         mSwerveMods = new SwerveModule[] {
             new SwerveModule(0, Constants.Swerve.Mod0.constants, Constants.Swerve.chosenModuleFront),
@@ -121,6 +125,7 @@ public class SwerveDrive extends SubsystemBase {
     }
 
     public void zeroGyro(){
+        System.out.println("Zero Gypo!!");
         gyro.setYaw(0);
     }
 
@@ -136,6 +141,14 @@ public class SwerveDrive extends SubsystemBase {
     public Rotation2d getYaw() {
         return (Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()) : Rotation2d.fromDegrees(gyro.getYaw());
     }
+
+    public double getPitch() {
+        return gyro.getPitch();
+    }
+
+    public double getZeroAngle() {
+        return zeroAngle;
+      }
 
     public void resetModulesToAbsolute(){
         for(SwerveModule mod : mSwerveMods){

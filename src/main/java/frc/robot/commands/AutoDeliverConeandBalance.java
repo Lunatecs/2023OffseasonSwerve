@@ -19,8 +19,8 @@ public class AutoDeliverConeandBalance extends SequentialCommandGroup {
   public AutoDeliverConeandBalance(SwerveDrive swerve, ElevatorSubsystem elevator, ArmSubsystem arm, WristSubsystem wrist, IntakeSubsystem intake) {
     addCommands(
       //new AutoDeliverTopConeCommand(elevator, arm, wrist, intake),
-      //new AutoSwerveMoveCommand(swerve, 86.5, 0.0001),
-      new AutoBalanceCommand(swerve)
+      new AutoSwerveMoveHalfSpeedCommand(swerve, 86.5, 0.0001)
+      //new AutoBalanceCommand(swerve)
     );
   }
 }
