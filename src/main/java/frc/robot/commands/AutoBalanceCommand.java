@@ -20,7 +20,7 @@ public class AutoBalanceCommand extends PIDCommand {
   public AutoBalanceCommand(SwerveDrive swerve) {
     super(
         // The controller that the command will use
-        new PIDController(0.165, 0.0165, 0),
+        new PIDController(0.195, 0.0165, 0),
         // This should return the measurement
         () -> swerve.getPitch(),
         // This should return the setpoint (can also be a constant)
@@ -31,6 +31,9 @@ public class AutoBalanceCommand extends PIDCommand {
           SmartDashboard.putNumber("Auto output", output);
           if(Math.abs(output)>0.325) {
               output = Math.signum(output) * 0.4;
+          }
+          if(swerve.getPitch() == swerve.getZeroAngle()) {
+            swerve.stop();
           }
           swerve.drive(new Translation2d(output, 0), 0, true, false);
         }

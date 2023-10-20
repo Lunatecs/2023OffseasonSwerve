@@ -59,7 +59,7 @@ public class RobotContainer {
                 () -> -driverJoystick.getRawAxis(translationAxis), 
                 () -> -driverJoystick.getRawAxis(strafeAxis), 
                 () -> -driverJoystick.getRawAxis(rotationAxis), 
-                () -> true,
+                () -> driverJoystick.getRawButton(Constants.JoystickConstants.RIGHT_BUMPER), //false for field centric
                 () -> driverJoystick.getRawButton(JoystickConstants.LEFT_BUMPER) // slowMode
             )
         );
@@ -147,7 +147,12 @@ public class RobotContainer {
         autoChooser.addOption("Deliver Cone and Move", new DeliverConeAndMoveCommand(swerve, elevator, arm, wrist, intake));
         autoChooser.addOption("Deliver Cone and Move Bump Side", new DeliverConeAndMoveBumpSideCommand(swerve, elevator, arm, wrist, intake));
         autoChooser.addOption("Test AutoBalance", new AutoDeliverConeandBalance(swerve, elevator, arm, wrist, intake));
-        
+        autoChooser.addOption("Path Test Copy", new AutoPath(swerve, "Path Test Copy"));
+        autoChooser.addOption("2 ball path planner", new AutoPathPlannerTest(elevator, arm, wrist, intake, swerve));
+        autoChooser.addOption("Single Path Test", new AutoSinglePathTest(elevator, arm, wrist, intake, swerve));
+        autoChooser.addOption("Parallel Deadline Command Group", new AutoDeliverConeandCube(intake, wrist, arm, elevator, swerve));
+        autoChooser.addOption("AutoDeliverConeandBalanceGOOD", new AutoDeliverConeandBalancePath(elevator, arm, wrist, intake, swerve));
+
         SmartDashboard.putData(autoChooser);
 
     }
