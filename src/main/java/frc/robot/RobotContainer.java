@@ -1,5 +1,7 @@
 package frc.robot;
 
+import java.util.HashMap;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -8,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -51,6 +54,8 @@ public class RobotContainer {
     private SetPointSupplier elevatorSetpoint = new SetPointSupplier();
     boolean isCone = false;
     
+    private HashMap<String, Command> eventMap = new HashMap<>();
+
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         swerve.setDefaultCommand(
@@ -69,6 +74,13 @@ public class RobotContainer {
 
         configureButtonBindings();
         configureAutos();
+
+        // add eventMap markers here (i dont feel like making multiple hashmaps)
+        // ex: eventMap.put("marker1", new PrintCommand("Passed marker 1"))
+        eventMap.put("deliverCone", new AutoDeliverTopConeCommand(elevator, arm, wrist, intake));
+        eventMap.put("elevatorUp", new SetTopLevelCommand(arm, elevator, wrist));
+        eventMap.put("deliverCube", new RunCommand(() -> intake.runIntake(.55), intake));
+        eventMap.put("celebrate", new PrintCommand("Final Marker Passed\nWOOOOOOOOO"));
     }
 
     /**
@@ -152,6 +164,7 @@ public class RobotContainer {
         autoChooser.addOption("Single Path Test", new AutoSinglePathTest(elevator, arm, wrist, intake, swerve));
         autoChooser.addOption("Parallel Deadline Command Group", new AutoDeliverConeandCube(intake, wrist, arm, elevator, swerve));
         autoChooser.addOption("AutoDeliverConeandBalanceGOOD", new AutoDeliverConeandBalancePath(elevator, arm, wrist, intake, swerve));
+        autoChooser.addOption("Event Trigger Path", new EventTriggerPathTest(swerve, "Path Test Copy Copy", eventMap));
 
         SmartDashboard.putData(autoChooser);
 
