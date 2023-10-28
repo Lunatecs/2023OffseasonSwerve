@@ -232,4 +232,8 @@ public final class Constants {
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
     
     }
+    public final static class DevilHornConstants {
+        public final static int FORK_MOTOR = 20;
+        public final static int DROP_SERVO = 7; 
+      }
 }

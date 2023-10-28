@@ -50,6 +50,7 @@ public class RobotContainer {
     private final ArmSubsystem arm = new ArmSubsystem();
     private final LEDSubsystem led = LEDSubsystem.getInstance();
     private final LimeLightSubsystem limelight = new LimeLightSubsystem();
+    private final DevilHornSubsystem devilHorn = new DevilHornSubsystem();
 
     private SetPointSupplier elevatorSetpoint = new SetPointSupplier();
     boolean isCone = false;
@@ -109,6 +110,10 @@ public class RobotContainer {
 
 
 
+        new JoystickButton(driverJoystick, JoystickConstants.START_BUTTON).onTrue(new RunCommand(() -> devilHorn.dropForks(driverJoystick.getRawButton(JoystickConstants.START_BUTTON)), devilHorn));
+    
+        new JoystickButton(operatorJoystick, JoystickConstants.START_BUTTON).onTrue(new RepeatCommand(new RunCommand(() -> devilHorn.setForkSpeed(-0.5), devilHorn)))
+                                                                                                                                  .onFalse(new RunCommand(() -> devilHorn.setForkSpeed(0), devilHorn));
 
         //Setpoint Wrist Control
         new JoystickButton(driverJoystick, JoystickConstants.BLUE_BUTTON).onTrue(new SetWristAngleAndLockCommand(wrist, WristConstants.GROUND_INTAKE_CONE));
@@ -135,8 +140,6 @@ public class RobotContainer {
         //Manual Wrist Control
         new Trigger(() -> {return Math.abs(operatorJoystick.getRawAxis(JoystickConstants.LEFT_Y_AXIS)) > 0.2;}).whileTrue(new RepeatCommand(new RunCommand(() -> wrist.turnWrist(.5*operatorJoystick.getRawAxis(JoystickConstants.LEFT_Y_AXIS)), wrist)))
                                                                                                                 .onFalse(new WristBrakeCommand(new SetPointSupplier(), wrist));
-        new JoystickButton(operatorJoystick, JoystickConstants.START_BUTTON).onTrue(new WristBrakeCommand(new SetPointSupplier(), wrist))
-                                                                            .onFalse(new InstantCommand(() -> {}, wrist));
 
         //LED Controls
         new JoystickButton(operatorJoystick, JoystickConstants.RIGHT_BUMPER).onTrue(new RunCommand(() -> {
