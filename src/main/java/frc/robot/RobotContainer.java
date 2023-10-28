@@ -78,10 +78,13 @@ public class RobotContainer {
 
         // add eventMap markers here (i dont feel like making multiple hashmaps)
         // ex: eventMap.put("marker1", new PrintCommand("Passed marker 1"))
-        eventMap.put("deliverCone", new AutoDeliverTopConeCommand(elevator, arm, wrist, intake));
+        //eventMap.put("deliverCone", new AutoDeliverTopConeCommand(elevator, arm, wrist, intake));
+        eventMap.put("elevatorDownAndWristOut", new SequentialElevatorDownWristOutAutoCommand(elevator, arm, wrist, intake));
+        eventMap.put("intakeCube", new InstantCommand(() -> intake.runIntake(-.55), intake));
         eventMap.put("elevatorUp", new SetTopLevelCommand(arm, elevator, wrist));
-        eventMap.put("deliverCube", new RunCommand(() -> intake.runIntake(.55), intake));
+        eventMap.put("deliverCube", new RunCommand(() -> intake.runIntake(.25), intake));
         eventMap.put("celebrate", new PrintCommand("Final Marker Passed\nWOOOOOOOOO"));
+        eventMap.put("elevatorMid", new SetOtherLevelsCommand(elevator, arm, wrist, ElevatorConstants.MID_HEIGHT, WristConstants.CONE_SETPOINT, 0.00006));
     }
 
     /**
@@ -167,7 +170,8 @@ public class RobotContainer {
         autoChooser.addOption("Single Path Test", new AutoSinglePathTest(elevator, arm, wrist, intake, swerve));
         autoChooser.addOption("Parallel Deadline Command Group", new AutoDeliverConeandCube(intake, wrist, arm, elevator, swerve));
         autoChooser.addOption("AutoDeliverConeandBalanceGOOD", new AutoDeliverConeandBalancePath(elevator, arm, wrist, intake, swerve));
-        autoChooser.addOption("Event Trigger Path", new EventTriggerPathTest(swerve, "Path Test Copy Copy", eventMap));
+        autoChooser.addOption("Event Trigger Path", new EventTriggerPathTest(swerve, "Path Test Copy Copy", eventMap, elevator, arm, wrist, intake));
+        autoChooser.addOption("Event Trigger Test 3 Piece", new EventTriggerPathTest(swerve, "Path Test Copy Copy Copy", eventMap, elevator, arm, wrist, intake));
 
         SmartDashboard.putData(autoChooser);
 

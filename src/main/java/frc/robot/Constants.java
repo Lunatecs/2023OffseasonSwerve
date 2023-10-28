@@ -176,7 +176,7 @@ public final class Constants {
 
     public final static class ElevatorConstants{
         public final static int ELEVATOR_MOTOR = 5;
-        public static final int LIMIT_SWITCH = 9;
+        public static final int LIMIT_SWITCH = 7;
         public static final double MAX_HEIGHT = -87000;// -86000;//-95000;//-95000;//-98000;//-101000; //-182000 (old)
         public static final double STATION_HEIGHT = -101000;
         public static final double MID_HEIGHT = -54000;//-53000;//-57000;//-60000;//-63000; //-135972 (old)
@@ -185,7 +185,7 @@ public final class Constants {
 
     public final static class ArmConstants {
         public final static int ARM_MOTOR = 10; 
-        public final static int LIMIT_SWITCH = 8;
+        public final static int LIMIT_SWITCH = 9;
         public final static double MAX_EXTENSION = 28918;
         public final static double TOP_EXTENSION = 20781;
         public final static double GROUND_EXTENSION = 10300;
@@ -234,6 +234,6 @@ public final class Constants {
     }
     public final static class DevilHornConstants {
         public final static int FORK_MOTOR = 20;
-        public final static int DROP_SERVO = 7; 
+        public final static int DROP_SERVO = 6; 
       }
 }

@@ -81,6 +81,56 @@
         "x": 2.356270002540006,
         "y": 4.567834222335112
       },
+      "nextControl": {
+        "x": 1.1037299974599941,
+        "y": 4.5121657776648885
+      },
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 6.8101527631626695,
+        "y": 3.65025944337603
+      },
+      "prevControl": {
+        "x": 5.264160528321057,
+        "y": 5.339399107369643
+      },
+      "nextControl": {
+        "x": 7.241181800796755,
+        "y": 3.179320309664714
+      },
+      "holonomicAngle": -46.636577041616675,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 1.7427337711818283,
+        "y": 4.48
+      },
+      "prevControl": {
+        "x": 4.376646467578647,
+        "y": 5.281625603251201
+      },
       "nextControl": null,
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -97,7 +147,7 @@
   ],
   "markers": [
     {
-      "position": 2.018181818181818,
+      "position": 1.8636363636363638,
       "names": [
         "elevatorUp"
       ]
@@ -119,6 +169,30 @@
       "position": 0.790909090909091,
       "names": [
         "intakeCube"
+      ]
+    },
+    {
+      "position": 3.2272727272727235,
+      "names": [
+        "elevatorDownAndWristOut"
+      ]
+    },
+    {
+      "position": 3.8181818181818117,
+      "names": [
+        "intakeCube"
+      ]
+    },
+    {
+      "position": 4.454545454545452,
+      "names": [
+        "elevatorMid"
+      ]
+    },
+    {
+      "position": 5.0,
+      "names": [
+        "deliverCube"
       ]
     }
   ]
